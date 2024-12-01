@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema en Línea para Resolver el Problema de la Ruta Más Corta</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Orbitron', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex flex-col">
+    <!-- Navbar -->
+    <nav class="bg-gray-800 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-blue-400 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
+                    <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd" />
+                </svg>
+                Investigacion Operativa
+            </a>
+            <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300">
+                Registrarse
+            </button>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="container mx-auto px-4 py-8 flex-grow">
+        <h1 class="text-4xl font-bold text-center mb-8 text-blue-400">
+            Sistema en Línea para Resolver el Problema de la Ruta Más Corta
+        </h1>
+
+        <!-- Sección de entrada para el grafo -->
+        <div class="space-y-6">
+            <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                <label for="graph-data" class="block text-lg font-semibold mb-2">Ingresa los datos del grafo (matriz de adyacencia):</label>
+                <textarea id="graph-data" rows="5" class="w-full bg-gray-700 text-white p-2 rounded-md" placeholder="0 4 0 0 0
+4 0 8 0 0
+0 8 0 7 0
+0 0 7 0 9
+0 0 0 9 0"></textarea>
+            </div>
+
+            <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                <label for="node-names" class="block text-lg font-semibold mb-2">Nombres de los nodos (separados por comas):</label>
+                <input id="node-names" type="text" class="w-full bg-gray-700 text-white p-2 rounded-md" placeholder="A,B,C,D,E">
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <label for="start-node" class="block text-lg font-semibold mb-2">Nodo de inicio:</label>
+                    <input type="number" id="start-node" min="0" class="w-full bg-gray-700 text-white p-2 rounded-md" placeholder="0">
+                </div>
+
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <label for="end-node" class="block text-lg font-semibold mb-2">Nodo final:</label>
+                    <input type="number" id="end-node" min="0" class="w-full bg-gray-700 text-white p-2 rounded-md" placeholder="4">
+                </div>
+            </div>
+
+            <!-- Botón para dibujar el grafo -->
+            <div class="text-center">
+                <button onclick="drawInitialGraph()" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 transform hover:scale-105">
+                    Dibujar Grafo
+                </button>
+            </div>
+        </div>
+
+        <!-- Canvas para la gráfica del grafo -->
+        <div class="mt-8">
+            <canvas id="graphCanvas" width="1000" height="600" class="bg-gray-800 rounded-lg shadow-lg mx-auto"></canvas>
+        </div>
+
+        <!-- Sección para encontrar la ruta más corta -->
+        <div class="mt-8 space-y-6">
+            <div class="text-center">
+                <button onclick="findShortestPath()" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 transform hover:scale-105">
+                    Encontrar Ruta Más Corta
+                </button>
+            </div>
+            <div id="output" class="bg-gray-800 p-6 rounded-lg shadow-lg text-center"></div>
+            <canvas id="shortestPathCanvas" width="1000" height="600" class="bg-gray-800 rounded-lg shadow-lg mx-auto"></canvas>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-center p-4 mt-8">
+        <p>&copy; 2023 MathSolver. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
